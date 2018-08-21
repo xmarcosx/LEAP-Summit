@@ -36,19 +36,19 @@
         <p>Before we dive into Google Data Studio itself, you need access to the data set used in this tutorial. We will be using a Google Sheet consisting of fake student demographic data. Clicking on the button below will cause Google to prompt you to make a copy of the Google Sheet.</p>
 <p><a href="https://docs.google.com/spreadsheets/d/1dObkGVgD5-jvePYzWqj7Frgh2xa1y_RFZnblYuZ7cow/copy" target="_blank"><paper-button class="colored" raised>Copy Google Sheet</paper-button></a></p>
 <aside class="special"><p><strong>Advanced Users</strong></p>
-<p>If you are comfortable with building reports in your student information system (SIS) or already have access to this data, pause here and create your own dataset. Your Google Sheet should have similar columns are our sample one, but will consist of your school&#39;s data.</p>
+<p>If you are comfortable with building reports in your student information system (SIS) or already have access to this data, pause here and create your own dataset. Your Google Sheet should have similar columns as our sample one, but will consist of your school&#39;s data.</p>
 </aside>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Creating a Data Source" duration="0">
-        <p>Now that you have a data set, we want to connect it to Google Data Studio via a data source. For a data set, this only needs to be completed once. This is because a data source can be used in multiple reports. If you decide to create a second student demographics focused report later on, you can reuse this data source without needing to create a new one.</p>
+        <p>Now that you have a data set, we want to connect it to Google Data Studio as a data source. For a data set, this only needs to be completed once. This is because a data source can be used in multiple reports. If you decide to create a second student demographics focused report later on, you can reuse this data source without needing to create a new one.</p>
 <ol type="1" start="1">
 <li>Sign into <a href="https://datastudio.google.com/" target="_blank">Google Data Studio</a></li>
 <li>Click on <img style="max-width: 83.09px" src="img/d3b441501e4d1e00.png"> along the left hand side</li>
 <li>Click <img alt="Create new report or data source." title="Create new report or data source." style="max-width: 31.45px" src="img/e3b5ae2d187f3b2c.png"> to create a new data source</li>
-<li>Find the Google Sheets connector and click <strong>Select</strong></li>
+<li>Find the Google Sheets connector and click &#34;Select&#34;</li>
 <li>Find your data set and click <img style="max-width: 77.94px" src="img/2680316a57dce2be.png"></li>
 </ol>
 <p>This will take you to a page where you can define the fields in the data set. On this page you can rename fields, change the field type, and set the default aggregation type. Take some time to rename fields and change field types if necessary and then click <img style="max-width: 95.48px" src="img/37381768312e6f02.png">. Data Studio will create a new report for you and confirm they are adding your new data source to this report.</p>
@@ -74,10 +74,10 @@
       </google-codelab-step>
     
       <google-codelab-step label="Creating Your First Chart" duration="0">
-        <p>Let&#39;s dive in and create our first chart! When creating a chart, it&#39;s important to consider the type of information you&#39;re wanting to show and how the underlying data is structured. It&#39;s helpful to start with a statistical question that you hope to be able to answer when looking at the chart.  We&#39;re going to start simple.  We&#39;re going to answer the question &#34;How many students are enrolled in each grade level?&#34; using a bar chart.</p>
+        <p>Let&#39;s dive in and create your first chart! When creating a chart, it&#39;s important to consider the type of information you want to show and how the underlying data is structured. It&#39;s helpful to start with a statistical question that you hope to be able to answer when looking at the chart.  We will start simple with a simple one that is relatively easy to answer.  How many students are enrolled in each grade level?</p>
 <ol type="1" start="1">
 <li>Click the bar chart button. <img style="max-width: 30.00px" src="img/169a4daf0d1c7e72.png"></li>
-<li>Now you have an object that you can add to the report using the cursor.  Click and drag your cursor to add the chart to the desired size (don&#39;t worry, it&#39;s like Google Drive, you&#39;ll be able to tweak it later!).</li>
+<li>Now you have an object that you can add to the report using the cursor.  Click and drag your cursor to add the chart to the desired size (don&#39;t worry, it&#39;s like Google Drive, you&#39;ll be able to tweak the size and formatting later!).</li>
 <li>Once the chart is created, you&#39;ll notice that Google Data Studio pre-fills the chart with data from your data source and a sidebar opens on the right of the screen.  The header of which should look like this:</li>
 </ol>
 <p><img style="max-width: 299.00px" src="img/46f728d08f28f4b8.png"></p>
@@ -85,12 +85,41 @@
 <ol type="1" start="4">
 <li>Dimensions describe.  Metrics measure.  In our question &#34;How many students are enrolled in each grade level?&#34; the dimension, or field we are using to describe the data, is grade level. In the &#34;Available Fields Column,&#34; select the dimension &#34;Grade Level&#34; and drag it to replace the green dimension field. OR Click the default green dimension field and select &#34;Grade Level&#34; from the list.</li>
 </ol>
+<ol type="1" start="1">
+<li>By default, &#34;Grade Level&#34; appears as a metric since all of the values are numbers.  You can paste a metric into a dimension field and Google Data Studio will treat the numbers as categorical information.  Alternatively, you could change the data type in the Data Source controls (which is a recommended practice as you continue to advance in your competency in Data Studio). </li>
+</ol>
+<ol type="1" start="5">
+<li>Your x-axis should now have the different grade levels in the data set across the bottom, with a column for each.  </li>
+</ol>
+<p><img style="max-width: 505.00px" src="img/9f830852b834fcbd.png"></p>
+<ol type="1" start="6">
+<li>Now we need to configure the measure.  There are a lot of ways to get a count, but a tried and true way is to use the Student ID number.  Since each student has precisely 1 student ID number, we&#39;re going to do a &#34;Count Distinct&#34; aggregation of that metric.  </li>
+<li>Add the Student ID metric to the Metric field.  Then click the aggregation button to the left (SUM is default). When you hover over it, the &#34;edit&#34; pencil will appear. <img style="max-width: 169.00px" src="img/a7fb7756a140c482.png"><img style="max-width: 163.50px" src="img/9ae65843eabe16fa.png"></li>
+<li>In the Metric configuration window that appears, select Count Distinct from the aggregation options.  </li>
+<li>Now you&#39;ll notice the new metric will appear in the legend of the chart, and the size of the bars will change to correspond with the count of students.</li>
+<li>By default, Google Data Studio will sort the chart descending by metric.  Depending on the purpose for the visualization, that might not be ideal.  For this application, we&#39;ll sort ascending by grade level.  Select Grade Level under the sort card and select ascending from the drop down.  The result should be this.</li>
+</ol>
+<p><img style="max-width: 491.00px" src="img/494d5b6bc8cdfea2.png"></p>
+<p><img style="max-width: 284.00px" src="img/8f63b8e1b34024e2.png"></p>
+<ol type="1" start="11">
+<li>Finally, there are a lot of customizations that you can make (hey, it&#39;s Google). If you select the Style tab, you&#39;ll see lots of options.  The only one we&#39;re going to use is the &#34;show data labels&#34; check box. Viola!  You&#39;ll see the values printed on the bars in your chart.  You now have a very clear and easy to read chart that shows how many students are in each grade level.</li>
+</ol>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Project: Additional Charts" duration="0">
-        <p>Anthony</p>
+        <p>Creating charts proves to be pretty easy once you understand the underlying data structure and how to manipulate the controls.  Like anything, though, it requires practice. You&#39;ve dipped your toe in the water and we&#39;ve built the first chart together. Take some time to experiment by creating additional charts that will use this data set.</p>
+<p>One path is to build off of the &#34;enrollments by grade&#34; chart that we created. You can manipulate the chart a bit by changing the dimensions dividing the data.  Your task is to develop charts that answer the questions:</p>
+<ul>
+<li>How do the enrollments by grade compare between schools in the district?</li>
+<li>How do enrollments vary by race and gender?</li>
+</ul>
+<p>Here&#39;s a basic example of a dashboard that answers our three questions of our data set.  There are a virtually unlimited number of ways to polish and customize these to suit your needs.  Effective data leaders engage in a feedback cycle to prevent the DRIP syndrome (data rich, information poor) so explore how professionals are using the data regularly and revise often!</p>
+<p><img style="max-width: 480.50px" src="img/85156b6715a2c988.png"></p>
+<aside class="special"><p><strong>Advanced Users</strong></p>
+<p>100% stacked bars are a great way to show distributions of students by performance level, grade level, or some other category when comparing proportions and not counts.  If you have a time dimension, try out the stacked area chart to show how those distributions change over time! </p>
+</aside>
 
 
       </google-codelab-step>
@@ -109,14 +138,16 @@
         <p>As you get more comfortable with data sources in Google Data Studio, you may find that you need to combine data sources to create a unified data source. This is where data blending comes in! To help us understand data blending, let&#39;s give an example. You currently have a data set that gives you student demographic data. Let&#39;s say we want to create a report that looks at course enrollment data <strong>and</strong> also include student demographic data in that report. Take a moment to copy the Google Sheet below and look over our fake course enrollment data.</p>
 <p><a href="https://docs.google.com/spreadsheets/d/1kSK05bd6X782imsJwYjogPJEurhe5Q5hCWrE2-U_sZA/copy" target="_blank"><paper-button class="colored" raised>Copy Google Sheet</paper-button></a></p>
 <p>One option would be to add columns to the course enrollment Google Sheet to include student demographic data. We could copy it in from our Student Demographics Google Sheet, but this creates a problem. We would then have information such as grade level stored in multiple Google Sheets. If we needed to update a student&#39;s grade level, we would need to update multiple sheets and that can get confusing fast.</p>
-<p>Instead you are going to create a new data source (following the process outlined in step 3 of this tutorial) for course enrollment data and create a new report. Once you have that new report, head to Resource → Manage blended data and click  <img style="max-width: 96.98px" src="img/8d4c9ea69d8f3374.png">. Create a data view that looks similar to the right side of the graphic below. You did it! Click <strong>Save </strong>and <strong>Close</strong> and try adding a table using this new blended data source.</p>
+<p>Instead you are going to create a new data source (following the process outlined in step 3 of this tutorial) for course enrollment data and create a new report. Once you have that new report, head to Resource → Manage blended data and click  <img style="max-width: 96.98px" src="img/8d4c9ea69d8f3374.png">. Create a data view that looks similar to the right side of the graphic below. You did it! Click &#34;Save&#34; and &#34;Close&#34; and try adding a table using this new blended data source.</p>
 <p><img style="max-width: 624.00px" src="img/7a2b556be10fdd0e.png"></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Wrap up" duration="0">
-        <p>Anthony</p>
+        <p>You&#39;re at the end! Hopefully you feel comfortable and understand how to bring data into Google Data Studio, create visualizations, and share those dashboards with users in your organization. In this Codelab we used Google Sheets as our data connector, but Data Studio supports at least a <a href="https://datastudio.google.com/datasources/create" target="_blank">dozen more</a> including Google Cloud SQL, BigQuery, Cloud Storage, MySQL, and PostgreSQL.</p>
+<p>We recommend you keep an eye on the updates blog for <a href="https://support.google.com/datastudio/answer/6311467" target="_blank">Data Studio</a> as well as this is a beta project that is being developed at a rapid pace.</p>
+<p>Best of luck!</p>
 
 
       </google-codelab-step>
